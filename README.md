@@ -113,7 +113,7 @@ Construction에서는 DOM(DOM Tree)(1)와  CSSOM(CSSOM Tree)(2)를 합하여 Ren
 <br/>
 <br/>
 
-1. 받은 HTML을 W3C 웹 표준화기구의 명세에 따라 HTML을 해석한다. 이걸 **parcing**이라고 부른다. <br/><br/>이때 HTML의 각 element들을 Node로 변환한다.  그리고 변환된 Node들로 DOM Tree를 만든다 이 부분을 **scripting**이라고 한다. <br/><br/>
+1. 받은 HTML을 W3C 웹 표준화기구의 명세에 따라 HTML을 해석한다. 이걸 **parcing**이라고 부른다. <br/><br/>이때 브라우저가 읽을 수 있게 HTML의 각 element들을 Node로 변환한다.  그리고 변환된 Node들로 DOM Tree를 만든다 이 부분을 **scripting**이라고 한다. <br/><br/>
 
 > DOM: hierarchical collection of Nodes<br/><br/>'노드들의 계층구조'라는 뜻이다.<br/><br/>
 돔은 Node들의 '가족관계도'라고 이해하는게 제일 나을 듯<br/><br/>
