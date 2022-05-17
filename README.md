@@ -16,13 +16,14 @@
 4. Operation(Layout, Paint, Composite)
 5. Critical Rendering Path 지식을 기반으로한 성능최적화 방법 
 
+<br/>
+<br/>
 
 ## 1. 전체적인 흐름 이해
 
 일단 웹브라우저가 어떻게 웹사이트 화면을 그리냐...를 영어로
 'Critical Rendering Path'라고 한다 
 이 Critical Rendering Path의 흐름은 아래의 그림과 같다. 
-
 
 
 
@@ -68,7 +69,7 @@ Construction에서는 DOM(DOM Tree)와  CSSOM(CSSOM Tree)를 합하여 Render Tr
 <br/>
 <br/>
 
-<div align="center"> <img src="/assets/21~22/21.svg" width="700px"  alt="그림 2. 2.의 설명범위 "></div>
+<div align="center"> <img src="/assets/2.svg" width="700px"  alt="그림 2. 2.의 설명범위 "></div>
 
 <br/>
 <br/>
@@ -96,7 +97,7 @@ Construction에서는 DOM(DOM Tree)와  CSSOM(CSSOM Tree)를 합하여 Render Tr
 <br/>
 <br/>
 
-<div align="center"> <img src="/assets/21~22/21.svg" width="700px"  alt="그림 3. 3. Construction의 설명범위"></div>
+<div align="center"> <img src="/assets/3.svg" width="700px"  alt="그림 3. 3. Construction의 설명범위"></div>
 
 <br/>
 <br/>
@@ -125,7 +126,7 @@ Construction에서는 DOM(DOM Tree)와  CSSOM(CSSOM Tree)를 합하여 Render Tr
 <br/>
 <br/>
 
-<div align="center"> <img src="/assets/21~22/21.svg" width="700px"  alt="그림 4. 'Dom Tree는 Node들의 가족관계도다' 라고 이해하면 된다  "></div>
+<div align="center"> <img src="/assets/4.svg" width="700px"  alt="그림 4. 'Dom Tree는 Node들의 가족관계도다' 라고 이해하면 된다  "></div>
 
 <br/>
 <br/>
@@ -157,7 +158,7 @@ Render Tree에는 사용자에게 궁극적으로 보여지는 노드들만 있�
 <br/>
 <br/>
 
-<div align="center"> <img src="/assets/21~22/21.svg" width="700px"  alt="그림 5. 4. Operation의 설명범위"></div>
+<div align="center"> <img src="/assets/5.svg" width="700px"  alt="그림 5. 4. Operation의 설명범위"></div>
 
 <br/>
 <br/>
@@ -189,3 +190,43 @@ operation: construction에서 얻어진 Render Tree를 바탕으로 브라우저
     >주의: Critical Path Rendering을 공부하면서 정말 애매했던 곳이 이 Composite부분이였다. 왜냐하면 어떤곳에서는 composite부분을 설명하고 또 어떤 곳에서는 composite부분을 설명 안하고 있기 때문이다. 일단 프론트엔드를 공부하는데 가장 기준이 되는 MDN에서는 설명을 **안하고 있다**. Composite부분이 정말로 존재하는지는 확실히 얘기 못하겠다. 그래도 일단 여기에는 설명을 해놓겠다. 혹시 저보다 자세히 아는 성님 계시면 훈수 부탁드립니다.  
 
 지금 까지 (4), (5), (6) 을 묶어 **Operation**이라고 부른다. 
+
+
+<br/>
+<br/>
+
+## 5. Critical Rendering Path 지식을 이용한 성능개선하는 방법  
+
+
+
+
+<br/>
+<br/>
+
+
+
+
+이제 Critical Rendering Path가 어떤 과정으로 동작하는 지는 알지만 진짜 중요한 것은 실전에 써먹는 법을 아는 것이다. 
+Critical Rendering Path를 잘 이해하면 지금보다 더 성능좋은 웹사이트를 만들 수 있다. 
+### 성능개선하는 법
+일을 처음부터 다시 시키는 코드를 작성하지 않는다. 
+이게 무슨 말이냐 
+
+<br/>
+<br/>
+
+<div align="center"> <img src="/assets/6.svg" width="700px"  alt="그림 6. 4. Operation의 설명범위"></div>
+
+<br/>
+<br/>
+    <div align="center"> <span>그림 6. Critical Rendering Path의 이해로 웹의 성능개선하는 법 </span></div>
+
+<br/>
+
+<br/>
+<br/>
+
+앞서 설명한 대로 순서는 (1) -> (6)으로 브라우저가 일을 한다. 
+일을 처음부터 다시 시키는 코드는 브라우저에게 '너 (1)부터 다시 일해' 라고 말하는 코드를 말한다. 반면 일을 덜 시키는 코드는 최대한 (6)쪽에 가까운 코드를 말한다. '(5)~(6)만 일하면 돼'
+예를 들어 div박스를 왼쪽으로 옮기는 애니매이션이 있다고 하자. 
+left를 써서 박스를 움직이면, (4), (5), (6)과정을 모두 건드려야 된다. 하지만 translate을 쓰면 (6)과정 만으로 똑같은 결과를 얻을 수 있다. 내가 쓴 코드중에 left가 있었는데 translate로 바꿨다? 그럼 내 웹은 그만큼 더 빨라진, 더 성능개선이 된 웹이 된 것이다. 이런 css property들의 성능들은'css trigger'라는 사이트에서 확인 할 수 있다. 
