@@ -79,7 +79,7 @@ Construction에서는 DOM(DOM Tree)와  CSSOM(CSSOM Tree)를 합하여 Render Tr
 
 
 
-|1.|www.naver.com이라고 주소창에 침|
+|1.|'www.naver.com'이라고 주소창에 침|
 |:--:|:--:|
 |2.|웹 브라우저가 DNS한테 naver의 IP주소를 물어봄|
 |3.|브라우저는 DNS한테 받은 IP주소로 네이버 서버에 가서 데이터를 요청(http Request)|
@@ -87,10 +87,27 @@ Construction에서는 DOM(DOM Tree)와  CSSOM(CSSOM Tree)를 합하여 Render Tr
 
 
 <br/>
-
+<br/>
 
 
 ## 3. Construction(DOM, CSSOM, Render Tree)
+
+<br/><br/>
+
+받은 HTML을 W3C 웹 표준화기구의 명세에 따라 HTML을 해석한다. 이걸 **parcing**이라고 부른다. <br/><br/>이때 HTML의 각 element들을 Node로 변환한다.  그리고 변환된 Node들로 DOM Tree를 만든다 이 부분을 **scripting**이라고 한다. <br/><br/>
+
+> DOM: hierarchical collection of Nodes<br/><br/>'노드들의 계층구조'라는 뜻이다.<br/><br/>
+돔은 Node들의 '가족관계도'라고 이해하는게 제일 나을 듯<br/><br/>
+공식정의는 'HTML이나 XML문서를 실체로 나타내는 API'라고 
+
+
+
+
+
+
+
+
+
 
 
 
@@ -108,7 +125,7 @@ Construction에서는 DOM(DOM Tree)와  CSSOM(CSSOM Tree)를 합하여 Render Tr
 
 
 
-
+  
 
 
 
