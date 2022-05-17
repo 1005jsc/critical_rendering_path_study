@@ -26,12 +26,22 @@
 
 
 
+<br/>
+<br/>
+
+<div align="center"> <img src="/assets/21~22/21.svg" width="700px"  alt="그림 1. Critical Rendering Path의 흐름 도식화 "></div>
+
+<br/>
+<br/>
+    <div align="center"> <span>그림 1. Critical Rendering Path의 흐름 도식화 </span></div>
+
+<br/>
+<br/>
 
 
 
 
 
-그림 1. Critical Rendering Path의 흐름 도식화 
 
 설명보다 그림을 보는게 쉽고 더 빨리 익숙해질것 같아서 구체적인 설명에 앞서 Critical Rendering Path의 그림부터 미리 보여주었다.
 <br/>
@@ -55,12 +65,72 @@ Construction에서는 DOM(DOM Tree)와  CSSOM(CSSOM Tree)를 합하여 Render Tr
 
 
 
+<br/>
+<br/>
 
-    그림2. '네이버'를 검색할때   
+<div align="center"> <img src="/assets/21~22/21.svg" width="700px"  alt="그림 2. 2.의 설명범위 "></div>
+
+<br/>
+<br/>
+    <div align="center"> <span>그림 2. 2.의 설명범위 </span></div>
+
+<br/>
+<br/>
 
 
-1. 네이버를 검색함
-2. 
+
+|1.|www.naver.com이라고 주소창에 침|
+|:--:|:--:|
+|2.|웹 브라우저가 DNS한테 naver의 IP주소를 물어봄|
+|3.|브라우저는 DNS한테 받은 IP주소로 네이버 서버에 가서 데이터를 요청(http Request)|
+|4.|네이버 서버는 응답으로 네이버 홈페이지 데이터를 브라우저에게 전송해줌(http Response) |
+
+
+<br/>
+
+
+
+## 3. Construction(DOM, CSSOM, Render Tree)
+
+
+
+<br/>
+<br/>
+
+<div align="center"> <img src="/assets/21~22/21.svg" width="700px"  alt="그림 3. 3. Construction의 설명범위"></div>
+
+<br/>
+<br/>
+    <div align="center"> <span>그림 3. 3. Construction의 설명범위 </span></div>
+
+<br/>
+<br/>
+
+
+
+
+
+
+
+
+
+<br/>
+<br/>
+
+<div align="center"> <img src="/assets/21~22/21.svg" width="700px"  alt="그림 1. Critical Rendering Path의 흐름 도식화 "></div>
+
+<br/>
+<br/>
+    <div align="center"> <span>그림 1. Critical Rendering Path의 흐름 도식화 </span></div>
+
+<br/>
+<br/>
+
+
+
+
+
+
 
 
 
