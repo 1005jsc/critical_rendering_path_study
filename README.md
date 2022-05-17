@@ -139,14 +139,16 @@ Construction에서는 DOM(DOM Tree)와  CSSOM(CSSOM Tree)를 합하여 Render Tr
 
 
 2. .css를 만나면 html 파싱하던걸을 멈추고 css를 파싱하여 **CSSOM**을 만든다.
+<br/>
 
 3. DOM 과 CSSOM을 합쳐 **Render Tree**를 만든다
 > css에 ```display: none;``` 이 있다면... <br/>
 dom 에서는 해당 Node가 존재해도 css에서는 ```display: none;```이라고 했으니 Render Tree에서 아예 빼버리게 된다. 해당 Node는 Render Tree에서는 찾아볼 수 없게 된다. <br/>
 Render Tree에는 사용자에게 궁극적으로 보여지는 노드들만 있다. 
+<br/>
+<br/>
 
-
-지금 까지 (1), (2), (3) 을 묶어 **Construction**이라고 부른다. Construction과정의 최종적인 결과물은 Render Tree인데 이 Render Tree를 바탕으로 브라우저가 최종적으로 화면에 웹사이트를 띄우는 것에 대해서는 다음 장 Operation에서 설명하겠다.
+지금 까지 (1), (2), (3) 을 묶어 **Construction**이라고 부른다. Construction과정의 최종적인 결과물은 Render Tree인데 이 Render Tree를 바탕으로 브라우저가 최종적으로 화면에 웹사이트를 띄우는 것에 대해서는 다음 장 **Operation**에서 설명하겠다.
 
 
 <br/>
@@ -167,28 +169,40 @@ Render Tree에는 사용자에게 궁극적으로 보여지는 노드들만 있�
 <br/>
 
 <br/>
-<br/>
 
 operation: construction에서 얻어진 Render Tree를 바탕으로 브라우저가 실제 그림을 그린다. 
 
-4. layout(reflow)
+<br/>
+
+4. ### layout(reflow)
     
+<br/>
     Render Tree의 노드들을 정확하게 어떤 크기, 어떤 위치에 그려야 될지를 계산함.
+<br/>
+
 > 노드의 수가 많아지면 레이아웃이 느려진다.
   css나 노드들이 추가되거나 애니메이션이 거창하면 레이아웃이 완료되는 시간이 느려진다. 이를 **jank**라고 한다. 우리 눈은 애니매이션이 16ms 당 한장보다 느려지면 불쾌감을 느끼기 시작하는데 jank로 인해 20ms 30ms느려져 버리면 그만큼 유저들은 웹사이트를 보면서 불쾌함을 느끼게 되는 것이다.   
+<br/>
 
-5. paint(repaint)
+5. ### paint(repaint)
+
+<br/>
 
     그릴 노드들을 어느 레이어에 올릴지 구분한다
 
+<br/>
 
-6. Composite 
+6. ### Composite 
+<br/>
 
     레이어들을 z-index에 맞춰 쌓고 브라우저에 띄운다. 
     드이더 브라우저에 웹사이트가 보이게 됨 
 
     >주의: Critical Path Rendering을 공부하면서 정말 애매했던 곳이 이 Composite부분이였다. 왜냐하면 어떤곳에서는 composite부분을 설명하고 또 어떤 곳에서는 composite부분을 설명 안하고 있기 때문이다. 일단 프론트엔드를 공부하는데 가장 기준이 되는 MDN에서는 설명을 **안하고 있다**. Composite부분이 정말로 존재하는지는 확실히 얘기 못하겠다. 그래도 일단 여기에는 설명을 해놓겠다. 혹시 저보다 자세히 아는 성님 계시면 훈수 부탁드립니다.  
 
+
+
+<br/>
 지금 까지 (4), (5), (6) 을 묶어 **Operation**이라고 부른다. 
 
 
