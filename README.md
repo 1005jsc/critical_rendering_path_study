@@ -23,7 +23,7 @@
 
 일단 웹브라우저가 어떻게 웹사이트 화면을 그리냐...를 영어로
 'Critical Rendering Path'라고 한다 
-이 Critical Rendering Path의 흐름은 아래의 그림과 같다. 
+이 Critical Rendering Path의 전체적인 흐름은 아래의 그림과 같다. 
 
 
 
@@ -54,7 +54,12 @@
 Critical Rendering Path는 크게 Construction과 Operation 이렇게 두가지로 나뉜다.
 <br/>
 <br/>
-Construction에서는 DOM(DOM Tree)와  CSSOM(CSSOM Tree)를 합하여 Render Tree를 생성한다. 그리고 Operation에서 Construction에서 생성된 Render Tree를 가지고 요소들(Nodes)들을 어느위치에 어느 크기로 그릴 지 정하고(Layout), 레이어 그룹을 설정하고(Paint), 마지막으로 레이어들을 올바른 순서로 포개어 드디어 화면에 보여주게된다(Composite).  
+Construction에서는 DOM(DOM Tree)(1)와  CSSOM(CSSOM Tree)(2)를 합하여 Render Tree(3)를 생성한다. 
+
+<br/>
+
+
+그리고 Operation에서 Construction에서 생성된 Render Tree(3)를 가지고 요소들(Nodes)들을 어느위치에 어느 크기로 그릴 지 정하고(Layout)(4), 레이어 그룹을 설정하고(Paint)(5), 마지막으로 레이어들을 올바른 순서로 포개어 드디어 화면에 보여주게된다(Composite)(6).  
 <br/>
 어쩌다 보니 이 글 전체의 내용을 요약해버렸다 이제부터는 위의 내용의 각 단계별로 차례차례 설명하고자 한다.  
 <br/>
@@ -251,7 +256,7 @@ Critical Rendering Path를 잘 이해하면 지금보다 더 성능좋은 웹사
 앞서 설명한 대로 순서는 (1) -> (6)으로 브라우저가 일을 한다. 
 <br/>
 <br/>
-일을 처음부터 다시 시키는 코드는 브라우저에게 '너 (1)부터 다시 일해' 라고 말하는 코드를 말한다. 반면 일을 덜 시키는 코드는 최대한 (6)쪽에 가까운 코드를 말한다. '(5)~(6)만 일하면 돼'
+일을 처음부터 다시 시키는 코드는 브라우저에게 '너 (1)부터 다시 일해' 처럼 말하는 코드를 말한다. 반면 일을 덜 시키는 코드는 최대한 (6)쪽에 가까운 코드를 말한다. '(5)~(6)만 일하면 돼'
 <br/>
 <br/>
 예를 들어 div박스를 왼쪽으로 옮기는 애니매이션이 있다고 하자. 
