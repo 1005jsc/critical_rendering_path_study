@@ -85,7 +85,7 @@ Construction에서는 DOM(DOM Tree)(1)와  CSSOM(CSSOM Tree)(2)를 합하여 Ren
 
 
 
-|1.|'www.네이버.com'이라고 주소창에 침|
+|1.|'www.naver.com'이라고 주소창에 침|
 |:--:|:--:|
 |2.|웹 브라우저가 DNS한테 naver의 IP주소를 물어봄|
 |3.|브라우저는 DNS한테 받은 IP주소로 네이버 서버에 가서 데이터를 요청(http Request)|
