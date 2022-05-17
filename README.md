@@ -29,7 +29,7 @@
 <br/>
 <br/>
 
-<div align="center"> <img src="/assets/21~22/21.svg" width="700px"  alt="그림 1. Critical Rendering Path의 흐름 도식화 "></div>
+<div align="center"> <img src="/assets/1.svg" width="700px"  alt="그림 1. Critical Rendering Path의 흐름 도식화 "></div>
 
 <br/>
 <br/>
@@ -92,24 +92,6 @@ Construction에서는 DOM(DOM Tree)와  CSSOM(CSSOM Tree)를 합하여 Render Tr
 
 ## 3. Construction(DOM, CSSOM, Render Tree)
 
-<br/><br/>
-
-받은 HTML을 W3C 웹 표준화기구의 명세에 따라 HTML을 해석한다. 이걸 **parcing**이라고 부른다. <br/><br/>이때 HTML의 각 element들을 Node로 변환한다.  그리고 변환된 Node들로 DOM Tree를 만든다 이 부분을 **scripting**이라고 한다. <br/><br/>
-
-> DOM: hierarchical collection of Nodes<br/><br/>'노드들의 계층구조'라는 뜻이다.<br/><br/>
-돔은 Node들의 '가족관계도'라고 이해하는게 제일 나을 듯<br/><br/>
-공식정의는 'HTML이나 XML문서를 실체로 나타내는 API'라고 
-
-
-
-
-
-
-
-
-
-
-
 
 <br/>
 <br/>
@@ -121,24 +103,33 @@ Construction에서는 DOM(DOM Tree)와  CSSOM(CSSOM Tree)를 합하여 Render Tr
     <div align="center"> <span>그림 3. 3. Construction의 설명범위 </span></div>
 
 <br/>
-<br/>
-
-
-
-  
-
-
-
-
 
 <br/>
 <br/>
 
-<div align="center"> <img src="/assets/21~22/21.svg" width="700px"  alt="그림 1. Critical Rendering Path의 흐름 도식화 "></div>
+1. 받은 HTML을 W3C 웹 표준화기구의 명세에 따라 HTML을 해석한다. 이걸 **parcing**이라고 부른다. <br/><br/>이때 HTML의 각 element들을 Node로 변환한다.  그리고 변환된 Node들로 DOM Tree를 만든다 이 부분을 **scripting**이라고 한다. <br/><br/>
+
+> DOM: hierarchical collection of Nodes<br/><br/>'노드들의 계층구조'라는 뜻이다.<br/><br/>
+돔은 Node들의 '가족관계도'라고 이해하는게 제일 나을 듯<br/><br/>
+공식정의는 'HTML이나 XML문서를 실체로 나타내는 API'라고 
+
+<br/>
+
+> Tip<br/>
+    돔은 꼭 자바스크립트로만 제어할 수 있는게 아니다(python의 'beautiful soup'처럼 다른언어로도 돔을 제어할 수 있다.) 어떤 언더든 라이브러리만 갖춰저 있으면 되는데 그 이유는 돔이 API를 갖고 있기 때문이다. 
+
+
+
+
 
 <br/>
 <br/>
-    <div align="center"> <span>그림 1. Critical Rendering Path의 흐름 도식화 </span></div>
+
+<div align="center"> <img src="/assets/21~22/21.svg" width="700px"  alt="그림 4. 'Dom Tree는 Node들의 가족관계도다' 라고 이해하면 된다  "></div>
+
+<br/>
+<br/>
+    <div align="center"> <span>그림 4. 'Dom Tree는 Node들의 가족관계도다' 라고 이해하면 된다  </span></div>
 
 <br/>
 <br/>
@@ -146,15 +137,55 @@ Construction에서는 DOM(DOM Tree)와  CSSOM(CSSOM Tree)를 합하여 Render Tr
 
 
 
+2. .css를 만나면 html 파싱하던걸을 멈추고 css를 파싱하여 **CSSOM**을 만든다.
+
+3. DOM 과 CSSOM을 합쳐 **Render Tree**를 만든다
+> css에 ```display: none;``` 이 있다면... <br/>
+dom 에서는 해당 Node가 존재해도 css에서는 ```display: none;```이라고 했으니 Render Tree에서 아예 빼버리게 된다. 해당 Node는 Render Tree에서는 찾아볼 수 없게 된다. <br/>
+Render Tree에는 사용자에게 궁극적으로 보여지는 노드들만 있다. 
 
 
+지금 까지 (1), (2), (3) 을 묶어 **Construction**이라고 부른다. Construction과정의 최종적인 결과물은 Render Tree인데 이 Render Tree를 바탕으로 브라우저가 최종적으로 화면에 웹사이트를 띄우는 것에 대해서는 다음 장 Operation에서 설명하겠다.
 
 
+<br/>
+<br/>
 
 
+## 4. Operation
+
+<br/>
+<br/>
+
+<div align="center"> <img src="/assets/21~22/21.svg" width="700px"  alt="그림 5. 4. Operation의 설명범위"></div>
+
+<br/>
+<br/>
+    <div align="center"> <span>그림 5. 4. Operation의 설명범위 </span></div>
+
+<br/>
+
+<br/>
+<br/>
+
+operation: construction에서 얻어진 Render Tree를 바탕으로 브라우저가 실제 그림을 그린다. 
+
+4. layout(reflow)
+    
+    Render Tree의 노드들을 정확하게 어떤 크기, 어떤 위치에 그려야 될지를 계산함.
+> 노드의 수가 많아지면 레이아웃이 느려진다.
+  css나 노드들이 추가되거나 애니메이션이 거창하면 레이아웃이 완료되는 시간이 느려진다. 이를 **jank**라고 한다. 우리 눈은 애니매이션이 16ms 당 한장보다 느려지면 불쾌감을 느끼기 시작하는데 jank로 인해 20ms 30ms느려져 버리면 그만큼 유저들은 웹사이트를 보면서 불쾌함을 느끼게 되는 것이다.   
+
+5. paint(repaint)
+
+    그릴 노드들을 어느 레이어에 올릴지 구분한다
 
 
+6. Composite 
 
+    레이어들을 z-index에 맞춰 쌓고 브라우저에 띄운다. 
+    드이더 브라우저에 웹사이트가 보이게 됨 
 
+    >주의: Critical Path Rendering을 공부하면서 정말 애매했던 곳이 이 Composite부분이였다. 왜냐하면 어떤곳에서는 composite부분을 설명하고 또 어떤 곳에서는 composite부분을 설명 안하고 있기 때문이다. 일단 프론트엔드를 공부하는데 가장 기준이 되는 MDN에서는 설명을 **안하고 있다**. Composite부분이 정말로 존재하는지는 확실히 얘기 못하겠다. 그래도 일단 여기에는 설명을 해놓겠다. 혹시 저보다 자세히 아는 성님 계시면 훈수 부탁드립니다.  
 
-
+지금 까지 (4), (5), (6) 을 묶어 **Operation**이라고 부른다. 
