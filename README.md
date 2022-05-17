@@ -204,7 +204,8 @@ operation: construction에서 얻어진 Render Tree를 바탕으로 브라우저
 
 
 <br/>
-지금 까지 (4), (5), (6) 을 묶어 **Operation**이라고 부른다. 
+
+지금까지의 (4), (5), (6) 을 묶어 **Operation**이라고 부른다. 
 
 
 <br/>
